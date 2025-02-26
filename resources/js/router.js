@@ -1,14 +1,19 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Login from "./Pages/Auth/Login.vue";
-import Register from "./Pages/Auth/Register.vue";
-import Dashboard from "./Pages/Dashboard.vue";
-import Home from "./Pages/Home.vue";
 
+// Lazy loading for better performance
 const routes = [
-    { path: "/", component: Home },
-    { path: "/login", component: Login },
-    { path: "/register", component: Register },
-    { path: "/dashboard", component: Dashboard, meta: { requiresAuth: true } }
+    { path: "/", component: () => import("./Pages/Profile/Home.vue") },
+    { path: "/dashboard", component: () => import("./Pages/Profile/Dashboard.vue") },
+    { path: "/items", component: () => import("./Pages/Profile/Items.vue") },
+    { path: "/welcome", component: () => import("./Pages/Profile/Welcome.vue") },
+
+    // Auth Routes
+    { path: "/login", component: () => import("./Pages/Auth/Login.vue") },
+    { path: "/register", component: () => import("./Pages/Auth/Register.vue") },
+    { path: "/forgot-password", component: () => import("./Pages/Auth/ForgotPassword.vue") },
+    { path: "/reset-password", component: () => import("./Pages/Auth/Reset.vue") },
+    { path: "/verify-email", component: () => import("./Pages/Auth/VerifyEmail.vue") },
+    { path: "/confirm-password", component: () => import("./Pages/Auth/ConfirmPassword.vue") },
 ];
 
 const router = createRouter({
@@ -16,18 +21,4 @@ const router = createRouter({
     routes,
 });
 
-// Redirect if user is not logged in
-router.beforeEach((to, from, next) => {
-    const isAuthenticated = localStorage.getItem("auth_token");
-    if (to.meta.requiresAuth && !isAuthenticated) {
-        next("/login");
-    } else {
-        next();
-    }
-});
-
 export default router;
-/*
-    In the above code, we have created a Vue router instance and defined some routes. We have also added a global navigation guard to check if the user is authenticated before navigating to the protected route.
-    Now, we need to import this router instance in the main.js file and use it in the Vue app.
-*/
