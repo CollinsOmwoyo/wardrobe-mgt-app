@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wardrobe App</title>
-    @vite(['resources/js/app.js'])
+    @vite(entrypoints: ['resources/js/app.js'])
 </head>
 <body>
-    <div id="App"></div>
+    <div id="app"></div>
 </body>
 </html>
