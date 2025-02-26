@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="App">
         <h2>Welcome to a Gen Z Wardrobe Management App 👕👖</h2>
         
         <!-- Dynamic Routing: Loads the page based on Vue Router -->
