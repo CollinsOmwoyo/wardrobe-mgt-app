@@ -28,7 +28,7 @@ const routes = [
     },
     {
         path: "/reset-password",
-        component: () => import("./Pages/Auth/Reset.vue"),
+        component: () => import("./Pages/Auth/ResetPassword.vue"),
     },
     {
         path: "/verify-email",
